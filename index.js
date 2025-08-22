@@ -2,6 +2,8 @@ import express from "express";
 import dotenv from "dotenv";
 import { producer } from "./kafka.js";
 import eventRouter from "./routes/events.route.js";
+import mongoose from "mongoose";
+import { connectDB } from "./db/connect.js";
 
 dotenv.config();
 
@@ -46,3 +48,5 @@ process.on("SIGINT", async () => {
   }
   process.exit(0);
 });
+
+await connectDB();

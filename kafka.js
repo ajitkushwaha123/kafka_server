@@ -19,7 +19,7 @@ const KAFKA_USERNAME = process.env.KAFKA_USERNAME;
 const KAFKA_PASSWORD = process.env.KAFKA_PASSWORD;
 
 const kafka = new Kafka({
-  clientId: "foodsnap-producer",
+  clientId: "foodsnap-service",
   brokers: KAFKA_BROKERS,
   logLevel: logLevel.INFO,
   ssl: {
@@ -33,6 +33,6 @@ const kafka = new Kafka({
 });
 
 const producer = kafka.producer();
+const consumer = kafka.consumer({ groupId: "my-group" });
 
-
-export { kafka, producer };
+export { kafka, producer, consumer };
